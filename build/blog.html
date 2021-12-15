@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Tyler Lum's Blog Post</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://unpkg.com/splitting/dist/splitting.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="page">
+
+  <h1 data-splitting>Tyler Lum's Blog Post</h1>
+  <p>In this blog post, I will be discussing different AWS services I used to create my cloud resume, the purpose of AWS services and what I learned after completing my cloud resume.</p>
+
+  <h1 data-splitting>DNS and S3</h1>
+
+  <p>To start off this project I first have to go through a couple of terms that were needed for the cloud resume.  DNS is a domain name system that translates hostnames into IP addresses.  I first started by buying a domain name from namecheap.com so people could find my resume.  Once I had a domain name, I had to find a way to edit the code on the domain so my content could be hosted somewhere.  I used Amazon S3, a service that provides object storage through a web service interface.</p>
+
+  <p>S3 was perfect for my project because I can upload all my website content to an S3 bucket.  I created a bucket with the same name as my domain, “tylerhlum.com,” which will post the contents I upload onto the domain.  I had to make sure my S3 bucket was public in order for others to see it, as well as created a bucket policy that would allow anybody to see the contents of the bucket.  I then created another bucket named “www.tylerhlum.com” that would redirect you to my main domain “tylerhlum.com”.  I enabled static website hosting for this bucket to ensure that users would be redirected to my main domain if they typed in “www.tylerhlum.com”.</p>
+
+  <h1 data-splitting>Route 53 and CloudFront</h1>
+
+  <p>I needed to enable Route 53 for this project.  This service will respond to DNS requests so when someone types my domain, it will go to the DNS service and respond with the correct IP address, thereby allowing the user to see the contents of my website.  I created hosted zones to set up how AWS Route 53 will respond to the DNS requests.  I then created an AWS Certificate to issue the SSL certificate to sign to the HTTPS request.  This was necessary because I needed to prove that I owned the domain, which made my data secure and prevented attackers from creating a fake version of my site.</p>
+
+  <p>The next thing I did was create a CloudFront distribution which speeds up the distribution of the website content.  This means whenever a user goes to my domain, they are going to hit a CloudFront distribution.  It will be using data used at an edge location.  This will then duplicate my S3 in different places all over the world so no matter what location you are at, you can see my domain.  When I created my CloudFront, I needed to make sure it redirects the user from HTTP to HTTPS to make it more secure.  CloudFront helps enhance the speed and cache.  We registered a custom domain, hosted the DSN on Route 53, Route 53 replies and redirects to CloudFront and wherever you are in the world you get a cache version of the website which is hosted on S3.</p>
+
+
+  <h1 data-splitting>DynnamoDB, Lambda and API Gateway</h1>
+
+
+  <p>For this project, I needed to create a visitor counter that would tally how many times my website was viewed.  I stored my data on a DynamoDB, which is a fully managed NoSQL database that supports data structures and key valued cloud services.  I knew I needed a simple API that allowed for simply key value access.  First, I needed to create a Lambda function that could connect to my DynamoDB in order to read, write, update and delete data from the DynamoDB tables.</p>
+
+  <p>AWS Lambda is a serverless computing platform that runs code in response to events and automatically manages the computing resources.  Because AWS Lambda is serverless, all I needed to do was create the function and upload the code because I know the servers will do everything else for you.  The final step was to create an API Gateway to allow users to interact with the database.  Having a Lambda API gateway provides tools for creating and documenting web APIs that route HTTP requests.  I had to make sure that my API was authenticated.  API Gateways help prevent malicious attacks by providing an additional layer of protection.</p>
+
+
+  <h1 data-splitting>React, HTML and CSS</h1>
+
+  <p>Once I finished the technical process using AWS services, I needed to find a good resume template and edit the format to my liking.  I ended up using React, which is an open source front-end library that is used to build user interfaces.  React is very fast, scalable and simple to use to create large web applications that can change the data in real time without having to reload the page.  I could have built a website using just HTML, but it is hard to build modern websites in HTML.  React provides more customization with flexibility and features that are aesthetically pleasing.  I edited the template to my liking and uploaded the files to my bucket.  Because I used React, I wrote majority of my code in JavaScript.  Writing in JavaScript made the web pages interactive and create a richer user interface.</p>
+
+
+  <h1 data-splitting>Conclusion</h1>
+
+  <p>Overall, I really enjoyed this project because I had to use a variety of AWS services and combine them for one project.  I was able to intertwine different technology functionalities and see how they all relate to each other.  One of the biggest challenges was truly understanding what I was doing.  It is easy to find the answers to my questions, but there were times where I needed to dig deeper and fully understand why what I was doing was important and how it could affect the final product or its usability.</p>
+  
+  <p>Before starting this project, I knew of the services AWS provided, but I did not know how multiple services could work together to achieve a goal.  This assignment allowed me to gain vital real hands on experience with the different services and not only learn the material but understand the concepts and how each piece fits in the puzzle.  It was a lot of work to accomplish but I am very satisfied with my cloud resume and am happy to share it, and what I learned, with others.</p>
+
+</div>
+<!-- partial -->
+  <script src='https://unpkg.com/splitting/dist/splitting.js'></script>
+<script src='https://unpkg.com/scroll-out/dist/scroll-out.js'></script>
+<script src='https://codepen.io/shshaw/pen/5eb6d4e9bfd78e3911ed9d0d0dfce69b.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
